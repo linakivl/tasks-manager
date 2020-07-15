@@ -1,0 +1,10 @@
+{
+    "name": "bampis/lina",
+    "authors": [
+        {
+            "name": "Charalampos Sykovaridis",
+            "email": "cs@itrust.gr"
+        }
+    ],
+    "require": {}
+}
