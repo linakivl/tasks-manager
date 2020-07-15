@@ -1,8 +1,9 @@
 <?php
+    require_once 'vendor/autoload.php';
 
-    require_once './class/Task.php';
+    $task = new \Itrust\Task(1);
 
-    $task = new Task(45454);
+    var_dump($task);
 
 //    $task->description = 'sdsd';
 //    $task->title = 'ttatata';

@@ -1,5 +1,10 @@
 {
     "name": "bampis/lina",
+    "autoload": {
+        "psr-4": {
+            "Itrust\\": "inc/classes"
+        }
+    },
     "authors": [
         {
             "name": "Charalampos Sykovaridis",

@@ -1,5 +1,7 @@
 <?php
 
+    namespace Itrust;
+
 class Db {
     private $servername = "localhost";
     private $username = "root";
@@ -21,8 +23,8 @@ class Db {
 
     private function __construct()
     {
-        $this->connection = new PDO("mysql:host=$this->servername;dbname=$this->database", $this->username, $this->password);
-        $this->connection->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+        $this->connection = new \PDO("mysql:host=$this->servername;dbname=$this->database", $this->username, $this->password);
+        $this->connection->setAttribute(\PDO::ATTR_ERRMODE, \PDO::ERRMODE_EXCEPTION);
     }
 
     public function execute($sql) {
@@ -34,7 +36,7 @@ class Db {
         $stmt->execute();
 
         // set the resulting array to associative
-        $stmt->setFetchMode(PDO::FETCH_ASSOC);
+        $stmt->setFetchMode(\PDO::FETCH_ASSOC);
 
         $results = $stmt->fetchAll();
 
