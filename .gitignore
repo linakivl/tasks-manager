@@ -2,3 +2,4 @@ vendor
 .htaccess
 .env
 .idea
+node_modules

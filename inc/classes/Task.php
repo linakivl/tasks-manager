@@ -32,6 +32,32 @@
             }
         }
 
+        public function createTask($title, $description){
+
+            $title = htmlentities($title);
+            $description = htmlentities($description);
+            //create a task
+            $sql = Db::getInstance()->execute("INSERT INTO (titles, description) 
+            VALUES('{$title}, '{$description}') ");
+
+        }
+
+        public function updateTask($title, $description){
+
+
+        }
+
+        public function deleteTask($id){
+
+
+        }
+
+        public function showTask(){
+
+            
+
+        }
+
         public function save()
         {
             $update = false;

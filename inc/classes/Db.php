@@ -1,11 +1,11 @@
 <?php
 
-    namespace Itrust;
+namespace Itrust;
 
 class Db {
     private $servername = "localhost";
     private $username = "root";
-    private $password = "root";
+    private $password = "orestis";
     private $database = "lina";
 
     private $connection;
@@ -28,7 +28,7 @@ class Db {
     }
 
     public function execute($sql) {
-        $this->connection->exec($sql);
+        return $this->connection->exec($sql);
     }
 
     public function getResults($sql, $single = false) {

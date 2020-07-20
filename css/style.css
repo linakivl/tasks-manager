@@ -1,0 +1,129 @@
+:root{
+    --form-bg-color: #363636;
+    --form-txt-color: #9c9c9c;
+}
+body{
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+    font-family: 'Open Sans Condensed', sans-serif;
+}
+html{
+    font-size: 62.5%;
+}
+
+.form__box{
+    width: 100%;
+    display:flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+   
+}
+.form__container{
+    display:flex;
+    flex-direction: column;
+    width: 400px;
+    border: 1px #c2c2c2 solid;
+    background-color: var(--form-bg-color);
+    padding-bottom: .5rem; 
+    
+}
+.form__text, .form__reg{
+
+    position: relative;
+    padding-bottom: 1rem;
+    text-align: center;
+	text-transform: uppercase;
+	color: #9c9c9c;
+	font-size: 18px;
+	font-weight: 100;
+	padding: 10px;
+    text-align: center;
+    letter-spacing: .2rem;
+}
+.form__reg::after{
+
+    content: "";
+    position: absolute;
+    bottom: 0;
+    left: 160px;
+    width: 8rem;
+    border: solid #fff .5px;
+
+}
+.form__container form{
+    display:flex;
+    flex-direction: column;
+    justify-items: center;
+    align-items: center;
+   
+}
+input[type="text"],
+input[type="email"], 
+input[type="password"]
+{
+    color: #fff;
+    letter-spacing: .15rem;
+    font-size:1.4rem;
+    padding: 1rem;
+    margin: .6rem 1rem;    
+    background-color: var(--form-bg-color);
+    border:none;
+    border-bottom: 1px solid rgb(165, 165, 165);
+    width: 290px;
+}
+input:focus{
+    outline:none;
+    border-bottom: 1px solid #fff;
+}
+input[type="submit"]
+{
+
+    background: var(--form-bg-color);
+    color: var(--form-txt-color);
+    font-weight: 200;
+    padding: 20px;
+    text-transform: uppercase;
+    margin-top:1.2rem;
+    cursor: pointer;
+    border: 1px solid var(--form-txt-color);
+    width: 290px;
+}
+
+input[type="submit"]:hover{
+    color:var(--form-txt-color);
+    background-color: rgba(255, 255, 255, 0.897);
+    font-weight: 700;
+    letter-spacing: 3px;
+    border-radius: 5rem;
+    border: 1px solid var(--form-txt-color);
+    transition: all 0.3s ease 0s;
+    transform: translateY(.2em);
+}
+
+
+p{
+    font-size: 1.2rem;
+    align-self: center;
+}
+a{
+    color: #fff;
+}
+
+.success{
+    color: yellowgreen;
+    font-size: 1.2rem;
+    margin-left: 1.2rem;
+}
+.error{
+    color:red;
+    font-size: 1.2rem;
+    margin-left: 1.2rem;
+}
+.form-tasks{
+    display: flex;
+    flex-direction: column;
+    width: 300px;
+}
