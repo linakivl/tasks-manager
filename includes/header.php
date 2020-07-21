@@ -1,3 +1,8 @@
+<?php
+   
+    require_once 'vendor/autoload.php';
+    
+?>
 <!DOCTYPE html>
     <html lang="en">
     <head>
@@ -6,5 +11,6 @@
         <title>Document</title>
         <link rel="stylesheet" href="css/style.css">
         <link rel="stylesheet" href="css/itr_style.css">
+  
     </head>
 <body>

@@ -104,7 +104,7 @@ input[type="submit"]:hover{
 }
 
 
-p{
+.message-user{
     font-size: 1.2rem;
     align-self: center;
 }

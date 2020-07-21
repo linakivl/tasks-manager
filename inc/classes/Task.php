@@ -32,13 +32,14 @@
             }
         }
 
-        public function createTask($title, $description){
-
+        public function createTask($title, $description, $userId){
+                 
             $title = htmlentities($title);
             $description = htmlentities($description);
             //create a task
-            $sql = Db::getInstance()->execute("INSERT INTO (titles, description) 
-            VALUES('{$title}, '{$description}') ");
+            $result = Db::getInstance()->execute("INSERT INTO tasks (tittle, description, creatorId) 
+            VALUES('{$title}', '{$description}', '{$userId}') ");
+            return ($result);
 
         }
 
@@ -51,10 +52,17 @@
 
 
         }
+        public function showOneTask($taskId){
+            $sql = "SELECT * FROM tasks WHERE $taskId = '${$taskId}'";
+            $theTask = Db::getInstance()->getResults($sql);
+            return $theTask;
+        }
+        public function showTasks($userId){
 
-        public function showTask(){
-
-            
+            //query get the tasks of this user and show it
+            $sql = "SELECT * FROM tasks INNER JOIN users ON tasks.creatorId = users.id WHERE creatorId = '{$userId}'  ";
+            $result = Db::getInstance()->getResults($sql);
+            return $result;
 
         }
 

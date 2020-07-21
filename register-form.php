@@ -8,8 +8,8 @@ include_once 'includes/header.php';
 
     if(isset($_POST['registerSubmit'])){
 
-        $fname = $_POST['registerFname'];
-        $lname = $_POST['registerFname'];
+        $fname = ucfirst($_POST['registerFname']);
+        $lname = ucfirst($_POST['registerFname']);
         $username = $_POST['registerUsername'];
         $userEmail = $_POST['registerEmail'];
         $userPassword = $_POST['registerPassword'];

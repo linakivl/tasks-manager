@@ -1,11 +1,7 @@
 <?php
 
-use Itrust\Messages;
-// use Itrust\Session;
-
-require_once 'vendor/autoload.php';
 include_once 'includes/header.php';
-    
+use Itrust\Messages;    
     
     if(isset($_POST['submit'])){
         
@@ -34,7 +30,7 @@ include_once 'includes/header.php';
                 <span><?php Messages::displayMessage();?></span>
                 <input type="submit" name ="submit" value="Submit"/>
             </form>
-            <p>if you are not a user <a href="register-form.php">Register Here</a></p>
+            <p class="message-user">if you are not a user <a href="register-form.php">Register Here</a></p>
         </div>
     </div>
 </body>
