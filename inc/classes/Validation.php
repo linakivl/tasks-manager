@@ -33,16 +33,15 @@
             if(!$password){
                 Messages::setMessage("Password chars must have at least 4 numbers", 'error');
                 return false;
-                if(!$email){
-                    Messages::setMessage("Email is not valid", 'error');
-                    return false;
-
-                    if($searchForUser){
-                        Messages::setMessage("User exists", 'error');
-                        return false;
-                    }
-                }
             }    
+            if(!$email){
+                Messages::setMessage("Email is not valid", 'error');
+                return false;
+            }
+            if($searchForUser){
+                Messages::setMessage("User exists", 'error');
+                return false;
+            }
             $newUser = new User($fname,$lname,$username, $email, $password);
             $newUser->createUser();
             Messages::setMessage("You are user now", 'success');
