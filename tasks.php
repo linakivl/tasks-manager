@@ -75,7 +75,7 @@ include_once 'includes/header.php';
             <?php foreach($allTasks as $value) : ?>
               <div class="display__container--tasks-box">
                   <div class="display__info">
-                    <div>
+                    <div class="info-task">
                         <h3><span id="h" class="task-info">Tittle: </span><?php echo $value['tittle'];?></h3>
                         <p><span class="task-info">Description:</span><?php echo $value['description']; ?></p>
                         <p><span class="task-info">Created by</span> <?php echo $value['firstName']; ?>|Date: <?php echo $value['createdAt']; ?></p>
@@ -88,8 +88,47 @@ include_once 'includes/header.php';
                         <input type="hidden" name="taskId" value="<?php echo $value['taskId']; ?>">
                         </form>
                       </div>
-                  
                   </div>
+                <script>
+                
+                    // $('.display__container--tasks').css("background-color","blue");
+                    $(document).ready(function(){
+                      //delete
+                      $('.deleteBtn').click(function(){
+
+                        var el = this;
+                        //delete id
+                        var deleteId = $(this).data('id');
+                        alert(deleteId);
+                        
+                        var confirmalert = confirm("Are you sure?");
+                        if(confirmalert == true){
+                          //Azax request
+                            $.ajax({
+                              type: 'post',
+                              data: {ajax: 1,  name: name},
+                              success: function(response){
+
+                                if(response == 1 ){
+                                  //Remove row from Html table
+                                  // $(el).closest('.info-task').css('background','tomato');
+                                  $(el).closest('.info-task').fadeOut(800, function(){
+                                    $(this).remove();
+                                 });
+                                }else{
+                                  alert('invalid id');
+                                }
+                              }
+
+                            });
+                        }
+
+                      });
+          
+                    });
+                
+
+                </script>
               </div>
               <?php endforeach ?>
           </div>
