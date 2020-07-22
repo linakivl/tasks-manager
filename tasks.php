@@ -7,23 +7,17 @@ include_once 'includes/header.php';
     $allTasks = $newReqTask->showTasks($_SESSION['id']);
     
     // print_r($allTasks);
-    if(isset($_POST['editBtn'])){
-      $_SESSION['taskId'] = $_POST['taskId'];;
-      header("Location: edit.php");
+    if(isset($_POST['deleteBtn'])){
+
+      echo $_SESSION['taskId'] = $_POST['taskId'];
+      $newReqTask->deleteTask($_SESSION['taskId']);
+
     }
 ?>
 <main>
-    <section class="wrapper__topBar">
-      <div class="wrapper__topBar--box">
-        <div class="topBar__container">
-              <h1>Tasks</h1>
-              <div class="logout__box">
-              <h2>Welcome <?php echo $_SESSION['fname']; ?></h1>
-              <a href="logout.php" class="top__nav-logout">Logout</a>
-              </div>
-          </div>
-      </div>
-      <div class="wrapper__topBar--displayTasks">
+    <section class="wrapper_allpage">
+      <?php include_once 'includes/top-bar.php'?>
+      <div class="wrapper_allpage__displayTasks">
         <div class="display__container">
           <div class="display__container--heading">
               <h3>My tasks</h3>
@@ -80,17 +74,21 @@ include_once 'includes/header.php';
           <div class="display__container--tasks">
             <?php foreach($allTasks as $value) : ?>
               <div class="display__container--tasks-box">
-                  <div class="display_info">
-                    <h3>Tittle: <?php echo $value['tittle'];?></h3>
-                    <p>Description: <?php echo $value['description']; ?></p>
-                    <p>Created by <?php echo $value['firstName']; ?>|Date: <?php echo $value['createdAt']; ?></p>
-                    <p>Updated: <?php echo $value['updatedAt']; ?></p>
-                    <form action="tasks.php" method="POST">
+                  <div class="display__info">
+                    <div>
+                        <h3><span id="h" class="task-info">Tittle: </span><?php echo $value['tittle'];?></h3>
+                        <p><span class="task-info">Description:</span><?php echo $value['description']; ?></p>
+                        <p><span class="task-info">Created by</span> <?php echo $value['firstName']; ?>|Date: <?php echo $value['createdAt']; ?></p>
+                        <p><span class="task-info">Updated:</span> <?php echo $value['updatedAt']; ?></p>
+                    </div>
                       <div class="box__task--buttons">
-                        <input type="submit" name="editBtn" class="btn btn--edit" value="edit">
+                        <form action="tasks.php" method="POST">
+                        <input type="submit" name="editBtn" class="btn btn--edit" value="Update">
+                        <input data-id="<?php echo $value['taskId']; ?>"  type="submit" name="deleteBtn" class="btn btn--edit deleteBtn" value="Delete">
                         <input type="hidden" name="taskId" value="<?php echo $value['taskId']; ?>">
+                        </form>
                       </div>
-                    </form>
+                  
                   </div>
               </div>
               <?php endforeach ?>

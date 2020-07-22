@@ -49,7 +49,21 @@
         }
 
         public function deleteTask($id){
-
+        
+            if($id){
+                //check record exists
+                if($id > 0){
+                    $sql = "SELECT * FROM tasks WHERE taskId = '{$id}'";
+                    $checkrecords = Db::getInstance()->getResults($sql);
+                    if($checkrecords){
+                        //delete record
+                        $deletequery = "DELETE FROM tasks WHERE taskId = '{$id}'";
+                        $result = Db::getInstance()->execute($deletequery);
+                       
+                        return true;
+                    }
+                }
+            }
 
         }
         public function showOneTask($taskId){
@@ -60,7 +74,7 @@
         public function showTasks($userId){
 
             //query get the tasks of this user and show it
-            $sql = "SELECT * FROM tasks INNER JOIN users ON tasks.creatorId = users.id WHERE creatorId = '{$userId}'  ";
+            $sql = "SELECT * FROM tasks INNER JOIN users ON tasks.creatorId = users.id WHERE creatorId = '{$userId}' ORDER BY taskId DESC ";
             $result = Db::getInstance()->getResults($sql);
             return $result;
 

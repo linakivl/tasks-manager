@@ -43,7 +43,7 @@ use Itrust\Messages;
                    
                     <input class="login-bg-color" type="email" name="loginEmail" placeholder="Email" required>
                     <input class="login-bg-color" type="password" name="loginPass" placeholder="Password" required>
-                    <span><?php Messages::displayMessage();?></span>
+                    <span class="display-span"><?php Messages::displayMessage();?></span>
                     <input type="submit" name="LoginButton" value="Login">
                     <p class="message-user">if you are not a user <a href="register-form.php">Register Here</a></p>
                 </form>
