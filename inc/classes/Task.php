@@ -43,13 +43,19 @@
 
         }
 
-        public function updateTask($title, $description){
-
+        public function updateTask($taskId,$title, $description,$userId){
+            print_r($title);
+            $title = htmlentities($title);
+            $description = htmlentities($description);
+           
+            //update task
+            // $updateResult = Db::getInstance()->execute("UPDATE tasks SET tittle = '{$title}', description = '{$description}', creatorId = '{$userId}' ");
+            
 
         }
 
         public function deleteTask($id){
-        
+             
             if($id){
                 //check record exists
                 if($id > 0){
@@ -60,7 +66,10 @@
                         $deletequery = "DELETE FROM tasks WHERE taskId = '{$id}'";
                         $result = Db::getInstance()->execute($deletequery);
                        
-                        return true;
+                        echo json_encode([
+                            'status' => true,
+                        ]);
+                        exit;
                     }
                 }
             }

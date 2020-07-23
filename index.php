@@ -12,13 +12,18 @@ use Itrust\Messages;
         if($resultUser){
 
             foreach($resultUser as $prop){
+                
                 $session = new \Itrust\Session();
                 $_SESSION['fname'] = $prop['firstName'];
                 $_SESSION['id'] = $prop['id'];
+
+                if($_SESSION['id']){
+
+                    \Itrust\Redirect::to('tasks.php');
+                    
+                }
             }
-            header("Location: tasks.php");
         }
-     
     }
 ?>
     <div class="wrapper">
@@ -45,6 +50,7 @@ use Itrust\Messages;
                     <input class="login-bg-color" type="password" name="loginPass" placeholder="Password" required>
                     <span class="display-span"><?php Messages::displayMessage();?></span>
                     <input type="submit" name="LoginButton" value="Login">
+                    <input type="hidden" name="hideLoginVal" value="1">
                     <p class="message-user">if you are not a user <a href="register-form.php">Register Here</a></p>
                 </form>
                 

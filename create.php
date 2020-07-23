@@ -13,7 +13,8 @@
         $newTask = new \Itrust\Task();
         $newTask->createTask($tittleTask, $descriptionTask, $userId);
         if($newTask){
-            header("Location: tasks.php");
+            
+            \Itrust\Redirect::to('tasks.php');
         }
     }
 ?>

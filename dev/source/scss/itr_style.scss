@@ -214,11 +214,11 @@ font-family: "Verdana", sans-serif;
         &:focus{
             outline: none;
             transform: translateY(0.2rem);
-            border-bottom: 1px solid #090979;
+            border-bottom: 1px solid #3f3fd3;
             transition: .2s ease-in;
         }
-
-        .checkbox__box {
+    }
+      .checkbox__box {
 
             display: flex;
             padding-left: 5rem;
@@ -227,9 +227,7 @@ font-family: "Verdana", sans-serif;
             justify-content: space-between;
             margin: 1rem 0;
             width: 190px;
-           
         }
-    }
     
     input:-webkit-autofill 
     {
@@ -398,18 +396,55 @@ font-family: "Verdana", sans-serif;
 
                     .display__info{
                         display: flex;
-                        justify-content: space-around;
-                        width: 60rem;
-                        padding: .9rem 0rem;
-                        border: 1px solid $color-primary;
-                        *{
+                        width: 70rem;
+                        max-width: 100%;
+                        padding: .9rem 1rem;
+                        box-shadow:  .2rem .2rem 0.4rem #090915;
+                        &__task{
+                          flex: 1;
+                          display:flex;
+                          flex-direction: column;
+                          *{
+                            margin: 1rem 0;
                             font-size: 1.4rem;
-                            padding: .5rem 2rem;
-                        }
-                        .task-info{
+                          }
+                          .task-info{
                             font-weight: bold;
-                            font-size: 1.5rem;
-                            padding: 0;
+                            margin: 0;
+                          }
+                          input{
+                            padding: 1rem 0em 1em .7em;
+                          }
+                          #descArea{
+                            font-size: 2rem;
+                            resize: none;
+                            padding-top: .2em;
+                          }
+    
+                        }
+                        
+                        .box__task--buttons{
+                          width: 40rem;
+                          text-align: end;
+
+                          input[type='submit']{
+                              width: 10rem;
+                              font-size: 1.6rem;
+                              outline:none;
+                              border: none;
+                              padding:1rem;
+                              cursor: pointer;
+                              border-radius: .2rem;
+                          }
+                          .updateBtn{
+                            background-color: rgb(125, 205, 50);
+                            color: #fff;
+                          
+                          }
+                          .deleteBtn{
+                            background-color: rgb(255, 0, 43);
+                            color: #fff;
+                          }
                         }
                     }
                 }

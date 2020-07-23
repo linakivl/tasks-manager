@@ -1,18 +1,16 @@
 <?php
 
-include_once 'includes/header.php';
+    include_once 'includes/header.php';
+
     $session = new Itrust\Session();
+    if(!isset($_SESSION['id'])){
+      \Itrust\Redirect::to('index.php');
+      die();
+    }
 
     $newReqTask = new Itrust\Task();
     $allTasks = $newReqTask->showTasks($_SESSION['id']);
-    
-    // print_r($allTasks);
-    if(isset($_POST['deleteBtn'])){
-
-      echo $_SESSION['taskId'] = $_POST['taskId'];
-      $newReqTask->deleteTask($_SESSION['taskId']);
-
-    }
+  
 ?>
 <main>
     <section class="wrapper_allpage">
@@ -75,60 +73,26 @@ include_once 'includes/header.php';
             <?php foreach($allTasks as $value) : ?>
               <div class="display__container--tasks-box">
                   <div class="display__info">
-                    <div class="info-task">
-                        <h3><span id="h" class="task-info">Tittle: </span><?php echo $value['tittle'];?></h3>
-                        <p><span class="task-info">Description:</span><?php echo $value['description']; ?></p>
-                        <p><span class="task-info">Created by</span> <?php echo $value['firstName']; ?>|Date: <?php echo $value['createdAt']; ?></p>
+                    <div class="display__info__task">
+                        <label class="task-info" for="taskTittle">Tittle: </label>
+                        <input type="text"  readonly="true" id="tittleName" ondblclick="this.readOnly='';" value="<?php echo $value['tittle'];?>">
+                        <label class="task-info" for="taskTittle">Description: </label>
+                        <textarea  name="descriptionTask" readonly="true" ondblclick="this.readOnly='';" id="descArea" cols="30" rows="10"> <?php echo $value['description'];?></textarea>
+                  
+                        <p><span class="task-info">Created by</span> <?php echo $value['firstName']; ?></p>
+                        <p><span class="task-info">Date: </span><?php echo $value['createdAt']; ?></p>
                         <p><span class="task-info">Updated:</span> <?php echo $value['updatedAt']; ?></p>
                     </div>
                       <div class="box__task--buttons">
                         <form action="tasks.php" method="POST">
-                        <input type="submit" name="editBtn" class="btn btn--edit" value="Update">
-                        <input data-id="<?php echo $value['taskId']; ?>"  type="submit" name="deleteBtn" class="btn btn--edit deleteBtn" value="Delete">
-                        <input type="hidden" name="taskId" value="<?php echo $value['taskId']; ?>">
+                        <input data-tasks-id="<?php echo $value['taskId']; ?>" type="submit" name="updateBtn" class="updateBtn" value="Update">
+                        <input  data-tasks-id="<?php echo $value['taskId']; ?>" type="submit" name="deleteBtn" class=" deleteBtn" value="Delete">
+                       
+                        <input id="hideUserId" type="hidden" name="userId" value="<?php echo $value['id']; ?>">
                         </form>
                       </div>
                   </div>
-                <script>
-                
-                    // $('.display__container--tasks').css("background-color","blue");
-                    $(document).ready(function(){
-                      //delete
-                      $('.deleteBtn').click(function(){
-
-                        var el = this;
-                        //delete id
-                        var deleteId = $(this).data('id');
-                        alert(deleteId);
-                        
-                        var confirmalert = confirm("Are you sure?");
-                        if(confirmalert == true){
-                          //Azax request
-                            $.ajax({
-                              type: 'post',
-                              data: {ajax: 1,  name: name},
-                              success: function(response){
-
-                                if(response == 1 ){
-                                  //Remove row from Html table
-                                  // $(el).closest('.info-task').css('background','tomato');
-                                  $(el).closest('.info-task').fadeOut(800, function(){
-                                    $(this).remove();
-                                 });
-                                }else{
-                                  alert('invalid id');
-                                }
-                              }
-
-                            });
-                        }
-
-                      });
-          
-                    });
-                
-
-                </script>
+             
               </div>
               <?php endforeach ?>
           </div>
