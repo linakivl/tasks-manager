@@ -43,14 +43,15 @@
 
         }
 
-        public function updateTask($taskId,$title, $description,$userId){
-            print_r($title);
-            $title = htmlentities($title);
-            $description = htmlentities($description);
-           
-            //update task
-            // $updateResult = Db::getInstance()->execute("UPDATE tasks SET tittle = '{$title}', description = '{$description}', creatorId = '{$userId}' ");
+        public function updateTask($taskId, $tittle, $description, $userId){
             
+            $tittle = htmlentities($tittle);
+            $description = htmlentities($description);
+            $sql = "UPDATE tasks SET tittle = '{$tittle}', description = '{$description}', creatorId = '{$userId}' WHERE taskId = '${taskId}' ";
+            //update task
+            $updateResult = Db::getInstance()->execute($sql);
+            // var_dump($update);
+
 
         }
 

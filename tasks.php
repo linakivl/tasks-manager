@@ -75,9 +75,9 @@
                   <div class="display__info">
                     <div class="display__info__task">
                         <label class="task-info" for="taskTittle">Tittle: </label>
-                        <input type="text"  readonly="true" id="tittleName" ondblclick="this.readOnly='';" value="<?php echo $value['tittle'];?>">
+                        <input type="text"  readonly="true" class="tittleName" ondblclick="this.readOnly='';" value="<?php echo $value['tittle'];?>">
                         <label class="task-info" for="taskTittle">Description: </label>
-                        <textarea  name="descriptionTask" readonly="true" ondblclick="this.readOnly='';" id="descArea" cols="30" rows="10"> <?php echo $value['description'];?></textarea>
+                        <textarea  name="descriptionTask" readonly="true" ondblclick="this.readOnly='';" class="descArea" cols="30" rows="10"> <?php echo $value['description'];?></textarea>
                   
                         <p><span class="task-info">Created by</span> <?php echo $value['firstName']; ?></p>
                         <p><span class="task-info">Date: </span><?php echo $value['createdAt']; ?></p>
@@ -88,7 +88,7 @@
                         <input data-tasks-id="<?php echo $value['taskId']; ?>" type="submit" name="updateBtn" class="updateBtn" value="Update">
                         <input  data-tasks-id="<?php echo $value['taskId']; ?>" type="submit" name="deleteBtn" class=" deleteBtn" value="Delete">
                        
-                        <input id="hideUserId" type="hidden" name="userId" value="<?php echo $value['id']; ?>">
+                        <input class="hideUserId" type="hidden" name="userId" value="<?php echo $value['id']; ?>">
                         </form>
                       </div>
                   </div>

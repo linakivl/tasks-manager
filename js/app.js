@@ -37,9 +37,9 @@ $(document).ready(function(){
       
        
         var update = confirm("Are you sure you want to do this update?");
-        var tittleName = $('#tittleName').val();
-        var description = $('#descArea').val();
-        var userId = $('#hideUserId').val();
+        var tittleName = $('.tittleName').val();
+        var description = $('.descArea').val();
+        var userId = $('.hideUserId').val();
        
 
         if(update == 1){
