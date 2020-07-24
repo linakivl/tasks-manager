@@ -62,4 +62,25 @@ $(document).ready(function(){
         }
         
     })
+
+
+
+    $('#searchInput').keyup(function(){
+        
+        $('#result').html('');
+
+        var searchField = $('#searchInput').val();
+       
+        var expression = new RegExp(searchField, "i");
+   
+        $.getJSON('update.json', function(data){
+            $.each(data, function(key, value){
+                if(value.tittle.search(expression) != -1){
+                    $('#result').append('<li class="list-group-append"><a href="#"> ' + value.tittle + '</a></li>');
+                }
+            });
+        })
+    })
+
+
 });

@@ -228,12 +228,11 @@ font-family: "Verdana", sans-serif;
             margin: 1rem 0;
             width: 190px;
         }
-    
-    input:-webkit-autofill 
-    {
-        -webkit-text-fill-color: white;
-        box-shadow: 0 0 0px 1000px $color-bg-login inset;
-    }
+  }
+  .login_input:-webkit-autofill {
+        -webkit-text-fill-color: rgb(255, 255, 255);
+         box-shadow: 0 0 0px 1000px $color-bg-login inset;
+      
   }
 
   .display-span{
@@ -256,6 +255,7 @@ font-family: "Verdana", sans-serif;
     background: #443579;
     background: -webkit-gradient(linear, left top, right top, from(#443579), color-stop(50%, #090979), to(#160886));
     background: linear-gradient(90deg, #443579 0%, #090979 50%, #160886 100%);
+    
   }
   
   .form__styles input[type="submit"]:hover {
@@ -318,21 +318,88 @@ font-family: "Verdana", sans-serif;
         background: linear-gradient(90deg, rgba(9,0,159,1) 0%, rgba(9,19,121,1) 13%, rgba(92,0,138,1) 100%);
         
         .topBar__container{
-            display:flex;
-            align-items: center;
-            width: 100rem;
+          display:flex;
+          align-items: center;
+          width: 100rem;
 
-             h1, h2{
-            color:#fff;
-            font-size: 3.5rem;
-            font-weight: lighter;
-            letter-spacing: .1rem;
-            font-family: $font-family-grill;
+        .topBar-heading{
+          position: relative;
+          display: flex;
+          align-items: center;
+          flex: 1;
+          flex-shrink: 0;
+          padding-left: 3rem;
         }
-        h1{
-            flex: 1;
-            flex-shrink: 0;
-            padding-left: 3rem;
+          h1, h2{
+          color:#fff;
+          display:inline-block;
+          font-size: 3.5rem;
+          font-weight: lighter;
+          letter-spacing: .1rem;
+          font-family: $font-family-grill;
+          
+        }
+        .searchIcon{
+          height: 3rem;
+          margin-left: .7rem;
+          cursor: pointer;
+          fill: #fff;
+        } 
+        .searchField{
+         
+          margin-left: .2em;
+          border:none;
+          border-bottom: 1px #ccc solid;
+          background-color: transparent;
+          color: #fff;
+          height: 3rem;
+          
+          &:focus{
+            outline: none;
+            border-bottom: 1px #cf76ff solid;
+           
+          }
+         
+        }  
+        .list-group{
+          background-color: white;
+          position: absolute;
+          top: 3.5rem;
+          left: 15rem;
+          border: rgb(212, 212, 212) solid 1px;
+          ul{
+            width: 20rem;
+            li{
+              list-style: none;
+              cursor: pointer;
+              padding:  1rem 0;
+              &:hover {
+                background-color: $color-bg-reg;
+              }
+              &:hover  a{
+                color:#fff;
+              }
+              
+              a{
+                position: relative;
+                text-decoration: none;
+                font-size: 1.6rem;
+                padding-left: 1.5em;
+                color: #0075f5;
+                &::before{
+                  content: "";
+                  background-image: url('../images/tick.png');
+                  position: absolute;
+                  height: 1.6rem;
+                  width: 1.6rem;
+                  top:.3rem;
+                  left:.5rem;
+                
+                }
+
+              }
+            }
+          }
         }
         .logout__box{
             display: flex;
@@ -350,6 +417,7 @@ font-family: "Verdana", sans-serif;
       }
        
     }
+   
     &__displayTasks{
         display: flex;
         justify-content: center;
@@ -415,9 +483,9 @@ font-family: "Verdana", sans-serif;
                           input{
                             padding: 1rem 0em 1em .7em;
                           }
-                          #descArea{
-                            font-size: 2rem;
+                          .descArea{
                             resize: none;
+                            font-size: 2rem;
                             padding-top: .2em;
                           }
     

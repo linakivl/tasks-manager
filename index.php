@@ -46,8 +46,8 @@ use Itrust\Messages;
                 </div> 
                 <form action="<?php echo htmlspecialchars($_SERVER['PHP_SELF']); ?>" method="POST" class="form__styles">
                    
-                    <input class="login-bg-color" type="email" name="loginEmail" placeholder="Email" required>
-                    <input class="login-bg-color" type="password" name="loginPass" placeholder="Password" required>
+                    <input class="login-bg-color login_input" type="email" name="loginEmail" placeholder="Email" required>
+                    <input class="login-bg-color login_input" type="password" name="loginPass" placeholder="Password" required>
                     <span class="display-span"><?php Messages::displayMessage();?></span>
                     <input type="submit" name="LoginButton" value="Login">
                     <input type="hidden" name="hideLoginVal" value="1">

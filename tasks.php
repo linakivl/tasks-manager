@@ -10,7 +10,8 @@
 
     $newReqTask = new Itrust\Task();
     $allTasks = $newReqTask->showTasks($_SESSION['id']);
-  
+    //Update or create the jason file where has the info about tasks and display it in search field
+    $newReqTask->get_data($_SESSION['id']);
 ?>
 <main>
     <section class="wrapper_allpage">
