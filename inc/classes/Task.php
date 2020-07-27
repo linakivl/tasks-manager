@@ -106,24 +106,25 @@
             Db::getInstance()->execute($sql);
         }
 
-        //getdata from db and make a json file include the content
         public function get_data($userId){
  
-            $sql = "SELECT * FROM tasks WHERE creatorId = '{$userId}'";
+            $sql = "SELECT tittle FROM tasks WHERE creatorId = '{$userId}'";
             $result = Db::getInstance()->getResults($sql);
+            return $result;
+            // var_dump($result);
             //fetching data
-            $employ_data = array();
+            // $employ_data = array();
                
-            foreach($result as $value){
-                $employ_data[] = array(
-                    'tittle' => $value['tittle']
-                );
-                $resultJason = json_encode($employ_data);
+            // foreach($result as $value){
+            //     $employ_data[] = array(
+            //         'tittle' => $value['tittle']
+            //     );
+            //     $resultJason = json_encode($employ_data);
                
-            }
-            $file_name = "update.".'json';
-            if(!file_put_contents($file_name, $resultJason)){
-                echo "There is some error";
-            }
+            // }
+            // $file_name = "update.".'json';
+            // if(!file_put_contents($file_name, $resultJason)){
+            //     echo "There is some error";
+            // }
         }
     }

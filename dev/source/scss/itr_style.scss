@@ -328,7 +328,6 @@ font-family: "Verdana", sans-serif;
           align-items: center;
           flex: 1;
           flex-shrink: 0;
-          padding-left: 3rem;
         }
           h1, h2{
           color:#fff;
@@ -366,7 +365,6 @@ font-family: "Verdana", sans-serif;
           position: absolute;
           top: 3.5rem;
           left: 15rem;
-          border: rgb(212, 212, 212) solid 1px;
           ul{
             width: 20rem;
             li{
@@ -600,5 +598,17 @@ font-family: "Verdana", sans-serif;
         }
     }
 }
+/////////////////////main page/////////////////////////
+// .main-container{
+//   height: 100vh;
+//   display:grid;
+//   grid-template-columns: [sidebar-start] 2rem [sidebar-end] 1fr  ;
+//   grid-template-rows: 20vh min-content 40vw min-content;
+//   border: 5px solid rgb(111,41,97);
+// }
+
+
+
+
 
  

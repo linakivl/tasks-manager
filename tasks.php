@@ -70,11 +70,11 @@
               </svg>
             </a>
           </div>
-          <div class="display__container--tasks">
+          <div class="display__container--tasks" id="table-data">
             <?php foreach($allTasks as $value) : ?>
               <div class="display__container--tasks-box">
                   <div class="display__info">
-                    <div class="display__info__task">
+                    <div class="display__info__task ">
                         <label class="task-info" for="taskTittle">Tittle: </label>
                         <input type="text"  readonly="true" class="tittleName" ondblclick="this.readOnly='';" value="<?php echo $value['tittle'];?>">
                         <label class="task-info" for="taskTittle">Description: </label>
