@@ -58,43 +58,36 @@ $(document).ready(function(){
                         location.reload();
                     }
                 }
-            })
+            });
         }
         
-    })
-
-    
+    });
 
     $('#searchInput').keyup(function(){
 
         var txtSearch = $(this).val();
-
-        $.ajax( {
-            url: '/lina-first-project/ajax.php',
-            type: 'post',
-            
-            'data': {'action': 'search-task'},
-            success: function(response){
-               $("#table-data").html(response); 
-            }
-        });
+        if(txtSearch!=''){
+            $.ajax( {
+                url: '/lina-first-project/ajax.php',
+                type: 'post',
+                
+                data: {'action': 'search-task', 'inputSearch' : txtSearch},
+                success: function(response){
+                $("#table-data").html(response); 
+                }
+            }); 
+        }else{
+            $("#table-data").html('');
+        }
+        
     });
 
-        
-    //     $('#result').html('');
 
-    //     var searchField = $('#searchInput').val();
-       
-    //     var expression = new RegExp(searchField, "i");
+    $(".searchIcon").click(function(){
+        $(".sidebar").toggleClass("toggleWidth");
+        $(".searchField").toggleClass("toggleInputSearch");
+    });
    
-    //     $.getJSON('update.json', function(data){
-    //         $.each(data, function(key, value){
-    //             if(value.tittle.search(expression) != -1){
-    //                 $('#result').append('<li class="list-group-append"><a href="#"> ' + value.tittle + '</a></li>');
-    //             }
-    //         });
-    //     })
- 
-
-
+   
+    
 });

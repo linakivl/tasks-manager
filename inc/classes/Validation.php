@@ -31,6 +31,7 @@
             $email    = self::emailValidation($email);
 
             $searchForUser = Db::getInstance()->getResults("SELECT email FROM users WHERE email = '${email}'");
+            
             if ( ! $password) {
                 Messages::setMessage("Password chars must have at least 4 numbers", 'error');
 
@@ -43,20 +44,19 @@
             }
             if ($searchForUser) {
                 Messages::setMessage("User exists", 'error');
-                var_dump( $searchForUser);
                 return false;
             }
 
 
-            // try {
-            //     $newUser = new User($fname, $lname, $username, $email, $password);
-            // }catch (\Exception $e) {
-            //     var_dump($e->getMessage());
-            // } finally {
+            try {
+                $newUser = new User($fname, $lname, $username, $email, $password);
+            }catch (\Exception $e) {
+                var_dump($e->getMessage());
+            } finally {
 
-            // }
+            }
 
-            // $id = $newUser->save();
+            $id = $newUser->save();
 
             Messages::setMessage("You are user now", 'success');
 

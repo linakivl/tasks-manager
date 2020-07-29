@@ -313,7 +313,6 @@ font-family: "Verdana", sans-serif;
         justify-content: center;
         padding: 1.1rem;
         width: 100%;
-        border:1px black solid;
         background: rgb(9,0,159);
         background: linear-gradient(90deg, rgba(9,0,159,1) 0%, rgba(9,19,121,1) 13%, rgba(92,0,138,1) 100%);
         
@@ -328,38 +327,22 @@ font-family: "Verdana", sans-serif;
           align-items: center;
           flex: 1;
           flex-shrink: 0;
+          a{
+            color:#fff;
+            text-decoration: none;
+          }
         }
           h1, h2{
           color:#fff;
           display:inline-block;
-          font-size: 3.5rem;
+          font-size: 3rem;
           font-weight: lighter;
           letter-spacing: .1rem;
           font-family: $font-family-grill;
           
         }
-        .searchIcon{
-          height: 3rem;
-          margin-left: .7rem;
-          cursor: pointer;
-          fill: #fff;
-        } 
-        .searchField{
-         
-          margin-left: .2em;
-          border:none;
-          border-bottom: 1px #ccc solid;
-          background-color: transparent;
-          color: #fff;
-          height: 3rem;
-          
-          &:focus{
-            outline: none;
-            border-bottom: 1px #cf76ff solid;
-           
-          }
-         
-        }  
+        
+        
         .list-group{
           background-color: white;
           position: absolute;
@@ -422,7 +405,64 @@ font-family: "Verdana", sans-serif;
         max-width:100%;
         width: 100%;
         overflow: hidden;
+        
+        
+        
 
+        .sidebar{
+          transition: all .1s linear 0s;
+          background-color: #09009f ;
+          height: 100vh;
+          width: 50px;
+          padding: 0 1rem;
+    
+
+          .sidebar__icons{
+            margin-top: 3rem;
+           
+            .searchIcon{
+              display: block;
+              fill: #fff;
+              height: 3rem;
+              margin-left: .7rem;
+              cursor: pointer;
+
+              &:hover{
+                fill: #fcfcfc;
+
+              }
+             
+            }
+            .searchField{
+              width: 200px;
+              margin-left: .2em;
+              border:none;
+              border-bottom: 1px #ccc solid;
+              background-color: transparent;
+              color: #fff;
+              height: 3rem;
+               
+           
+              &:focus{ 
+                transition:  .35s ease-in-out;
+                width: 230px;
+                outline: none;
+                border-bottom: 1px #cf76ff solid;
+              }
+              
+            }   
+          }
+        }
+        .toggleWidth{
+          width: 300px;
+          transition: all .3s linear 0s;
+
+        }
+        .toggleInputSearch{
+          display: none;
+          
+        }
+        
         .display__container{
             display:flex;
             align-items: center;

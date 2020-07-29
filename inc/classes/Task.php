@@ -106,25 +106,10 @@
             Db::getInstance()->execute($sql);
         }
 
-        public function get_data($userId){
+        public function get_data($userId, $tasktittle){
  
-            $sql = "SELECT tittle FROM tasks WHERE creatorId = '{$userId}'";
+            $sql = "SELECT * FROM tasks INNER JOIN users ON tasks.creatorId = users.id WHERE `creatorId` = '{$userId}' AND `tittle` LIKE '%".$tasktittle."%'";
             $result = Db::getInstance()->getResults($sql);
             return $result;
-            // var_dump($result);
-            //fetching data
-            // $employ_data = array();
-               
-            // foreach($result as $value){
-            //     $employ_data[] = array(
-            //         'tittle' => $value['tittle']
-            //     );
-            //     $resultJason = json_encode($employ_data);
-               
-            // }
-            // $file_name = "update.".'json';
-            // if(!file_put_contents($file_name, $resultJason)){
-            //     echo "There is some error";
-            // }
         }
     }

@@ -1,8 +1,8 @@
 <div class="wrapper_allpage__topBar">
     <div class="topBar__container">
         <div class="topBar-heading">
-			<h1>Tasks</h1>
-			<svg class="searchIcon" version="1.1" id="Capa_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+			<h1><a href="tasks.php">Tasks</a></h1>
+			<!-- <svg class="searchIcon" version="1.1" id="Capa_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
 				viewBox="0 0 512 512" style="enable-background:new 0 0 512 512;" xml:space="preserve">
 			<g>
 				<g>
@@ -65,9 +65,9 @@
 			</g>
 			<g>
 			</g>
-			</svg>
-			<input type="text" id="searchInput" class="searchField displayseachField" name="searchField" placeholder="Search your task">
-			<div class="list-group"><ul  id="result"></ul></div>
+			</svg> -->
+			<!-- <input type="text" id="searchInput" class="searchField displayseachField" name="searchField" placeholder="Search your task">
+			<div class="list-group"><ul  id="result"></ul></div> -->
 		</div>
 		<div class="logout__box">
 		<h2>Welcome <?php echo $_SESSION['fname']; ?></h1>
