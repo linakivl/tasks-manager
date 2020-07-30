@@ -4,7 +4,11 @@
 
     class Validation
     {
+        private static $salt = "something";
+        public static $signedIn = false;
+
         public static function login($email, $password)
+        
         {
 
             $password   = self::passwordEncrypt($password);
@@ -16,9 +20,38 @@
             if ( ! $searchUser) {
                 Messages::setMessage('You are not a user', 'error');
             }
-            Session::$loggedIn = true;
+   
+            if($searchUser){
+
+                foreach($searchUser as $prop){
+    
+                    $session = new \Itrust\Session();
+                    $_SESSION['fname'] = $prop['firstName'];
+                    $_SESSION['id'] = $prop['id'];
+                    $_SESSION['key'] = md5( self::$salt . $prop['id']);
+                    
+    
+                    if($_SESSION['id']){
+    
+                        \Itrust\Redirect::to('tasks.php');
+    
+                    }
+                }
+            }
 
             return $searchUser;
+        }
+
+        public static function check_the_login(){
+            $session = new \Itrust\Session();
+            if(
+                isset($_SESSION['id']) 
+                && isset($_SESSION['key'])
+                && $_SESSION['key'] === md5( self::$salt . $_SESSION['id'])
+                ) {
+                self::$signedIn = true;
+            }
+            return self::$signedIn;
         }
 
         public static function validationRegister($fname, $lname, $username, $email, $pass)

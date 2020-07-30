@@ -3,6 +3,12 @@
 include_once 'includes/header.php';
 use Itrust\Messages;
 
+
+    if (Itrust\Validation::check_the_login()) {
+        header("Location: tasks.php");
+        die();
+    }
+
     if(isset($_POST['LoginButton'])){
 
         $email =  (!empty($_POST['loginEmail'])) ? $_POST['loginEmail'] : false;
@@ -20,21 +26,7 @@ use Itrust\Messages;
         //perform login
 
 
-        if($resultUser){
-
-            foreach($resultUser as $prop){
-
-                $session = new \Itrust\Session();
-                $_SESSION['fname'] = $prop['firstName'];
-                $_SESSION['id'] = $prop['id'];
-
-                if($_SESSION['id']){
-
-                    \Itrust\Redirect::to('tasks.php');
-
-                }
-            }
-        }
+        
     }
 ?>
     <div class="wrapper">
