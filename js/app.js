@@ -84,12 +84,12 @@ $(document).ready(function(){
         
     });
 
+        
+    
 
-    $(".searchIcon").click(function(){
-        $(".sidebar").toggleClass("toggleWidth");
-        $(".searchField").toggleClass("toggleInputSearch");
+    $(".bars-icon").click(function(){
+        $(".hidden-bar").toggleClass("display");
     });
-   
    
     
 });

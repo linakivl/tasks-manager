@@ -82,7 +82,7 @@
         public function showTasks($userId){
 
             //query get the tasks of this user and show it
-            $sql = "SELECT * FROM tasks INNER JOIN users ON tasks.creatorId = users.id WHERE creatorId = '{$userId}' ORDER BY taskId DESC LIMIT 2";
+            $sql = "SELECT * FROM tasks INNER JOIN users ON tasks.creatorId = users.id WHERE creatorId = '{$userId}' ORDER BY taskId DESC";
             $result = Db::getInstance()->getResults($sql);
             return $result;
 

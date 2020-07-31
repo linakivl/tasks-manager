@@ -13,11 +13,10 @@
     
 ?>
 <main>
-    <section class="wrapper_allpage">
+    <div class="wrapper_allpage">
       <?php include_once 'includes/top-bar.php'?>
-      <div class="wrapper_allpage__displayTasks">
-        <div class="sidebar">
-            <div class="sidebar__icons">
+      <div class="hidden-bar display">
+            <div class="hidden-bar__icons">
             <svg class="searchIcon" version="1.1" id="Capa_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
 				viewBox="0 0 512 512" style="enable-background:new 0 0 512 512;" xml:space="preserve">
 			<g>
@@ -83,9 +82,11 @@
 			</g>
       </svg>
       <input type="text" id="searchInput" class="searchField displayseachField toggleInputSearch toggleWidth" name="searchField" placeholder="Search your task">
-			<!-- <div class="list-group"><ul  id="result"></ul></div> -->
+		
             </div>
         </div>
+      <div class="wrapper_allpage__displayTasks">
+
         <div class="display__container">
           <div class="display__container--heading">
             <div class="backbtn">
@@ -262,7 +263,8 @@
           </div>
         </div>
       </div>
-  </section>
+  </div>
+
 </main>
 <?php include_once 'includes/footer.php'; ?>
 

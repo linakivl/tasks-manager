@@ -2,9 +2,7 @@
    
     include_once 'includes/header.php';
     $session = new \Itrust\Session();
-   
-   
-   
+
     if(isset($_POST['createTask'])){
 
         $tittleTask = $_POST['newTittle'];
@@ -20,7 +18,7 @@
 ?>
 <main>
  <section class="wrapper_allpage">
-      <?php include_once 'includes/top-bar.php'?>
+
       <div class="create_container">
           <div class="create_container_box">
             <form action="create.php" method="POST" id="createForm">
