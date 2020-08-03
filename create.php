@@ -12,13 +12,12 @@
         $newTask->createTask($tittleTask, $descriptionTask, $userId);
         if($newTask){
             
-            \Itrust\Redirect::to('tasks.php');
+            \Itrust\Redirect::to('main.php');
         }
     }
 ?>
 <main>
  <section class="wrapper_allpage">
-
       <div class="create_container">
           <div class="create_container_box">
             <form action="create.php" method="POST" id="createForm">

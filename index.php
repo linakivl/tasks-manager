@@ -15,17 +15,6 @@ use Itrust\Messages;
         $pass = (!empty($_POST['loginPass'])) ? $_POST['loginPass'] : false;
 
         $resultUser = \Itrust\Validation::login($email, $pass);
-
-        //validation
-
-        //not ok -> dromo
-
-
-        //ok
-
-        //perform login
-
-
         
     }
 ?>

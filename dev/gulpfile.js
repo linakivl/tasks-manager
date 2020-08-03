@@ -10,7 +10,7 @@ const gulp = require('gulp'),
 cleanCSS = require('gulp-clean-css');
 
 gulp.task('styles', function() {
-    gulp.src('source/scss/itr_style.scss')
+    gulp.src('source/scss/main-style.scss')
         .pipe(sass({
             indentedSyntax: false,
             outputStyle: 'expanded',

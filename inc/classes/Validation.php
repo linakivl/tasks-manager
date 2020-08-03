@@ -33,7 +33,7 @@
     
                     if($_SESSION['id']){
     
-                        \Itrust\Redirect::to('tasks.php');
+                        \Itrust\Redirect::to('main.php');
     
                     }
                 }
@@ -82,7 +82,7 @@
 
 
             try {
-                $newUser = new User($fname, $lname, $username, $email, $password);
+                $newUser = new \Itrust\User($fname, $lname, $username, $email, $password);
             }catch (\Exception $e) {
                 var_dump($e->getMessage());
             } finally {

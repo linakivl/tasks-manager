@@ -43,14 +43,16 @@
 
         }
 
-        public function updateTask($taskId, $tittle, $description, $userId){
+        public function updateTask($taskId, $tittle, $description){
             
             $tittle = htmlentities($tittle);
             $description = htmlentities($description);
-            $sql = "UPDATE tasks SET tittle = '{$tittle}', description = '{$description}', creatorId = '{$userId}' WHERE taskId = '${taskId}' ";
+            $sql = "UPDATE tasks SET tittle = '{$tittle}', description = '{$description}' WHERE taskId = '${taskId}' ";
             //update task
+            
             $updateResult = Db::getInstance()->execute($sql);
-     
+           
+           
         }
 
         public function deleteTask($id){
@@ -64,11 +66,7 @@
                         //delete record
                         $deletequery = "DELETE FROM tasks WHERE taskId = '{$id}'";
                         $result = Db::getInstance()->execute($deletequery);
-                       
-                        echo json_encode([
-                            'status' => true,
-                        ]);
-                        exit;
+                        return true;
                     }
                 }
             }
@@ -110,6 +108,7 @@
  
             $sql = "SELECT * FROM tasks INNER JOIN users ON tasks.creatorId = users.id WHERE `creatorId` = '{$userId}' AND `tittle` LIKE '%".$tasktittle."%'";
             $result = Db::getInstance()->getResults($sql);
+            
             return $result;
         }
     }

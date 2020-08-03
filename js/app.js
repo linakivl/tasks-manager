@@ -1,95 +1,97 @@
 $(document).ready(function(){
     //delete
-    $('.deleteBtn').click(function(e){
+    $('.deleteButton').click(function(){
     //e.preventDefault cause its inside the form
-    e.preventDefault();
-  
+    // e.preventDefault();
     //get id
+  
     var taskId = $(this).data('tasks-id');
     var confirmalert = confirm("Are you sure?");
+   
     if(confirmalert == true){
         //Azax request 
         $.ajax({
+            
             url: '/lina-first-project/ajax.php',
             type: 'post',
-            dataType: "json",
             data: {
             'action': 'delete-task',
             'deleteVal': taskId
             },
             success: function(response){
-            if (response && response.status) {
+
                 location.reload();
-            }
-            //   //Remove row from Html table
-            //   // $(el).closest('.info-task').css('background','tomato');
-   
-            }
+            
+          }
         });
     }
     });
 
     $('.updateBtn').click(function(e){
 
-        e.preventDefault();
+       
        
         var taskid = $(this).data('tasks-id');
-      
-       
         var update = confirm("Are you sure you want to do this update?");
         var tittleName = $('.tittleName').val();
         var description = $('.descArea').val();
-        var userId = $('.hideUserId').val();
        
 
         if(update == 1){
+           
             $.ajax({
                 url: '/lina-first-project/ajax.php',
                 type: 'post',
                 data: {
+
                     'action': 'update-task', 
                     'updateVal' : taskid,
                     'tittle' : tittleName,
-                    'description' : description,
-                    'userId' : userId
+                    'description' : description
                 },
                 success: function(response){
-                    if(response){
-                        location.reload();
-                    }
-                }
+
+                    location.reload();
+                
+              }
             });
         }
         
     });
 
-    $('#searchInput').keyup(function(){
-
-        var txtSearch = $(this).val();
-        if(txtSearch!=''){
+    $('.searchField').keyup(function(){
+        
+        var textField = $(this).val(); 
+        if(textField!=''){
             $.ajax( {
                 url: '/lina-first-project/ajax.php',
                 type: 'post',
-                
-                data: {'action': 'search-task', 'inputSearch' : txtSearch},
+                data: { 'action' : 'search-task',
+                        'inputSearch' : textField
+                },
                 success: function(response){
-                $("#table-data").html(response); 
-                }
-            }); 
-        }else{
-           
-            $("#table-data").html('');
-         
+                    if(response){
+                        $("#table-data").html(response);
+                    }
+                } 
+              });
+            }
+        if(textField == ''){
+            location.reload();
         }
-        
+    });
+    
+   //active class list sidebar
+    $(".container__sideBar--list li").click(function(){
+        $(".container__sideBar--list li").removeClass("active")
+        $(this).addClass("active");
     });
 
-        
+
+    $('.editBtn').click(function(){
+        var box = $(this).closest('.taskInfo').find('.hideUpdate');
+        box.slideToggle();
+    });
     
 
-    $(".bars-icon").click(function(){
-        $(".hidden-bar").toggleClass("display");
-    });
-   
-    
 });

@@ -38,7 +38,8 @@
         public function save() {
             if($this->id) {
                 //update
-                $sql = "";
+                // $sql = "UPDATE users SET firstName = $this->firstName, lastName = $this->lastName, username = $this->username
+                // email = $this->email, password = $this->password"; 
             }else {
                 //Create
                 $sql = "INSERT INTO users (firstName, lastName, username, email, password, active)
@@ -48,7 +49,5 @@
             DB::getInstance()->execute($sql);
         }
 
-//        public function createUser(){
-//            $searchUser = Db::getInstance()->execute($sql);
-//        }
+
     }
