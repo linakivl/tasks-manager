@@ -71,7 +71,9 @@ $(document).ready(function(){
                 },
                 success: function(response){
                     if(response){
+                        
                         $("#table-data").html(response);
+                        
                     }
                 } 
               });
@@ -92,6 +94,19 @@ $(document).ready(function(){
         var box = $(this).closest('.taskInfo').find('.hideUpdate');
         box.slideToggle();
     });
+
+    // $('.container__sideBar a').click(function(){
+
+    //   $('.container__sideBar--list').slideToggle();
+       
+
+    // });   
+    // $('.container__sideBar a').mouseenter(function(){
+    //     $('.container__sideBar--list').css("display","block");
+    // });
+    // $('.container__sideBar a').mouseleave(function(){
+    //     $('.container__sideBar--list').css("display","none");
+    // });
     
 
 });

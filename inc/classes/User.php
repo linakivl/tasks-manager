@@ -35,6 +35,10 @@
             }
         }
 
+        public function setPassword($password) {
+            $this->password = $password;
+        }
+
         public function save() {
             if($this->id) {
                 //update
@@ -43,10 +47,17 @@
             }else {
                 //Create
                 $sql = "INSERT INTO users (firstName, lastName, username, email, password, active)
-            VALUES ('{$this->firstName}', '{$this->lastName}' , '{$this->username}' , '{$this->email}', '{$this->password}' , '{$this->active}')  " ;
+                VALUES ('{$this->firstName}', '{$this->lastName}' , '{$this->username}' , '{$this->email}', '{$this->password}' , '{$this->active}')  " ;
+                
+                try {
+                    DB::getInstance()->execute($sql);
+                    return DB::getInstance()->getLastInsert();
+                } catch (\Exception $e) {
+                    return false;
+                }
             }
 
-            DB::getInstance()->execute($sql);
+            
         }
 
 

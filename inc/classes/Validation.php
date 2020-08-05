@@ -82,18 +82,40 @@
 
 
             try {
-                $newUser = new \Itrust\User($fname, $lname, $username, $email, $password);
+                $newUser = new \Itrust\User();
+
+                // $fname, $lname, $username, $email, $password
+                $newUser->firstName = $fname;
+                $newUser->lastName = $lname;
+                $newUser->username = $username;
+                $newUser->email = $email;
+                $newUser->setPassword($password);
+
+                $id = $newUser->save();
             }catch (\Exception $e) {
                 var_dump($e->getMessage());
             } finally {
 
             }
+            
+            if ($id) {
+                $session = new \Itrust\Session();
+                $_SESSION['fname'] = $fname;
+                $_SESSION['id'] = $id;
+                $_SESSION['key'] = md5( self::$salt . $id);
+                
 
-            $id = $newUser->save();
+                if($_SESSION['id']){
+                    \Itrust\Redirect::to('main.php');
+                }
+                return true;
+            }
 
-            Messages::setMessage("You are user now", 'success');
 
-            return true;
+            Messages::setMessage("Register failed", 'error');
+            return false;
+
+            
         }
 
         //check password and make it encrypted

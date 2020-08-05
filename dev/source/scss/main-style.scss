@@ -5,6 +5,44 @@ $color-bg-reg: #171865;
 $color-purple: #5239ad;
 $color-light-grey: #CFD8DC;
 $background-linear : linear-gradient(90deg, #443579 0%, #090979 50%, #160886 100%);
+@media only screen and(max-width:899px){
+        .top-mainTable, .tableBox, .pagination__table {
+            grid-column: 1 / 4;
+        }
+        .container{
+            grid-template-columns: repeat(3  1fr);
+            grid-template-rows: 4rem 1fr;
+        }
+        .container__sideBar--list{
+            display: none;
+        }
+        .container__sideBar--list a{
+            display: inline-block;
+        }
+        #heading-bars{
+            display: block;
+        }
+       
+    }
+
+    @media only screen and(min-width:900px){
+        .top-mainTable, .tableBox, .pagination__table {
+
+            grid-column: 2 / 3;
+           
+        }
+        .container{
+            grid-template-columns: min-content 1fr;
+            grid-template-rows: 5rem 1fr;
+        }
+        .container__sideBar--list{
+            display: block;
+        }
+        #heading-bars{
+            display: none;
+        }
+        
+    }
 *{
     padding:0;
     margin: 0;
@@ -17,11 +55,11 @@ a{
 li{
     list-style: none;
 }
+
 .container{
     display:grid;
-    grid-template-columns: minmax(3.5rem, 12rem) minmax(300px, 1fr);
-    grid-template-rows: 4rem 1fr;
-    height: 100vh;
+    height: 100vh;    
+
 
     &__sideBar{
         grid-column: 1 / 2;
@@ -29,13 +67,25 @@ li{
         display: flex;
         flex-direction: column;
         background: linear-gradient(90deg, #443579 0%, #090979 50%, #160886 100%);
-      
-        h1{
-            color: rgb(255, 255, 255);
-            margin-top: 1rem;
-            font-weight: lighter;
-            padding-left: 1.2rem;
+        .sideBar__heading{
+            padding-left: .4rem;
+            margin-top: .4rem;
+            display: flex;
+            align-items: center;
+
+                #heading-bars{
+                  fill: #fff;
+                  height: 2rem;
+                  cursor: pointer;
+                }
+
+                a{
+                color: #fff;
+                font-weight: lighter;
+                padding-left: 1.2rem;
+                }
         }
+      
         &--list{
             margin-top:1rem;
             ul{
@@ -63,6 +113,7 @@ li{
     }
     &__topBar{
         grid-column: 2 / -1;
+        padding: .5rem 0;
         display: grid;
         grid-template-columns: repeat(2, 1fr);
         align-items: center;
@@ -119,17 +170,24 @@ li{
                 justify-content: center;
                 align-items: center;
                 border: 1px solid #5335c0bb;
-                width: 35px;
-                height: 35px;
+                width: 70px;
+                height: 70px;
                 border-radius: 50%;
                 box-shadow: .1em .1em .1em #5239adbb;
-                background: #7b69c7;
+                // background: #7b69c7;
                
                 .user-icon{
                     height: 1.1rem;
-                    fill: rgb(255, 255, 255);
+                    fill: $color-purple;
                  }
                 
+            }
+            .images-upload{
+                top:0;
+                left:30rem;
+                background-color: #fff;
+                position: absolute;
+                border: solid 1px black;    
             }
             .exit-icon{
                 height: 1.4rem;
@@ -145,7 +203,7 @@ li{
         grid-template-columns: minmax(min-content, 5rem) minmax(min-content, 80vw) minmax(min-content, 5rem);
         grid-template-rows: minmax(min-content, 5rem) min-content minmax(min-content, 10rem);
         .top-mainTable{
-            grid-column: 2 / 3;
+            
             grid-row: 1 / 2;
             display:flex;
             justify-content: space-between;
@@ -159,7 +217,7 @@ li{
             }
         }
         .tableBox{
-            grid-column: 2 / 3;
+
             grid-row: 2 / 3;
             display: flex;
             flex-direction: column;
@@ -240,7 +298,7 @@ li{
             } 
       }
        .pagination__table{
-          grid-column: 2 / 3;
+
           grid-row: 3 / 4;  
           display: grid;
           grid-template-columns: 1fr;

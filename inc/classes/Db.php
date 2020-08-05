@@ -31,6 +31,10 @@ class Db {
         return $this->connection->exec($sql);
     }
 
+    public function getLastInsert() {
+        return $this->connection->lastInsertId();
+    }
+
     public function getResults($sql, $single = false) {
         $stmt = $this->connection->prepare($sql);
         $stmt->execute();
