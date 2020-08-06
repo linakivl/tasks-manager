@@ -3,29 +3,57 @@
 
     class Images {
 
+        private $userIdPhoto;
+        private $userfNamePhoto;
+        private $newName;
 
-        public static $newCreatedName;
-        
 
-        public static function displayImage($userId){
+        public function __construct($userId, $userfName)
+        {
+              $this->userIdPhoto = $userId;  
+              $this->userfNamePhoto = $userfName;  
+        }
 
-            $sql = "SELECT `status` FROM images WHERE userId = '{$userId}'";
+        public function checkImageExist(){
+
+            $sql = "SELECT `imageName` FROM images WHERE userId = '{$this->userIdPhoto}'";
             $result =  Db::getInstance()->getResults($sql);
+
             if(!$result){
 
                 return false;
             }
-            var_dump(self::$newCreatedName);
-            // Redirect::to("main.php");
+            return $result;
         }
-        public static function updateImagesTable($userId){
+        
+     
+
+        public function updateImagesTable(){ 
            
-            $sql = "INSERT INTO images(`userId`, `status`) VALUES ( '{$userId}' , '1')";
-            $result = Db::getInstance()->execute($sql);
-            self::displayImage($userId);
+            //if not.. update
+            if($this->checkImageExist()){
+
+                foreach($this->checkImageExist() as $value){
+
+                    $imageExistName = $value['imageName'];
+                    $path = "images/usersimg/$imageExistName";
+                    $link = unlink($path);
+
+                    if($link){
+                        $sql = "UPDATE images SET imageName = '{$this->newName}'";
+                    }
+                }
+
+            }else{
+                 //check if the userid exist
+                $sql = "INSERT INTO images(`userId`, `imageName`) VALUES ( '{$this->userIdPhoto}' , '{$this->newName}' )";
+                
+            }
+            $result = Db::getInstance()->execute($sql); 
+            Redirect::to("main.php");
         }
 
-        public static function uploadImage($userId,$firstName){
+        public  function uploadImage(){
 
             $file = $_FILES['file'];
             $fileName = $_FILES['file']['name'];
@@ -33,13 +61,13 @@
             $fileTmpName= $_FILES['file']['tmp_name'];
             $fileError = $_FILES['file']['error'];
             $fileSize = $_FILES['file']['size'];
-
-            //allow jpg
+            
+    
             $fileExtension = explode('.', $fileName);
             $fileActualExtension = strtolower(end($fileExtension));
-            $allowed = ['jgp', 'jpeg', 'png'];
+            $allowed = ['jpg', 'jpeg', 'png'];
 
-            if(in_array($fileActualExtension , $allowed)){
+            if(!in_array($fileActualExtension , $allowed)){
                 Messages::setMessage("You can't upload this kind of type", 'error');    
             }
             if(!$fileError === 0){
@@ -49,13 +77,14 @@
                 Messages::setMessage("Your file size is big!", 'error');
             }
            
-            self::$newCreatedName =  $fileNewName = $userId . $firstName . "." . $fileActualExtension;
-            $fileDestination = 'images/usersimg/' . $fileNewName;
+            $fileNewName = $this->userIdPhoto . $this->userfNamePhoto . "." . $fileActualExtension;
+            $this->newName = $fileNewName; 
+            $fileDestination = 'images/usersimg/'.$fileNewName;
             
-            move_uploaded_file($fileTmpName, $fileDestination);
-
+            $move = move_uploaded_file($fileTmpName, $fileDestination);
+         
             if($fileDestination){
-                static::updateImagesTable($userId);
+               $this->updateImagesTable();
             }
         }
 

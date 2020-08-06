@@ -169,17 +169,21 @@ li{
                 display: flex;
                 justify-content: center;
                 align-items: center;
-                border: 1px solid #5335c0bb;
+                border: 1px solid #0e0e0ebb;
                 width: 70px;
                 height: 70px;
                 border-radius: 50%;
-                box-shadow: .1em .1em .1em #5239adbb;
-                // background: #7b69c7;
+                box-shadow: .1em .1em .1em #000000bb;
                
-                .user-icon{
-                    height: 1.1rem;
-                    fill: $color-purple;
-                 }
+                // .user-icon{
+                //     height: 1.1rem;
+                //     fill: $color-purple;
+                //  }
+                .figure-image{
+                  
+                    width: 100%;
+                    border-radius: 50%;
+                }
                 
             }
             .images-upload{

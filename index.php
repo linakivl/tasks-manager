@@ -2,10 +2,10 @@
 
 include_once 'includes/header.php';
 use Itrust\Messages;
+use Itrust\Redirect;
 
-
-    if (Itrust\Validation::check_the_login()) {
-        header("Location: tasks.php");
+if (Itrust\Validation::check_the_login()) {
+        Redirect::to('main.php');
         die();
     }
 
