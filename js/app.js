@@ -1,15 +1,13 @@
 $(document).ready(function(){
     //delete
     $('.deleteButton').click(function(){
-    //e.preventDefault cause its inside the form
-    // e.preventDefault();
-    //get id
   
-    var taskId = $(this).data('tasks-id');
+    var taskId = $(this).closest('.taskInfo').data('tasks-id');
+    console.log($(this),taskId);
     var confirmalert = confirm("Are you sure?");
    
     if(confirmalert == true){
-        //Azax request 
+        
         $.ajax({
             
             url: '/lina-first-project/ajax.php',
@@ -21,7 +19,6 @@ $(document).ready(function(){
             success: function(response){
 
                 location.reload();
-            
           }
         });
     }
@@ -29,8 +26,6 @@ $(document).ready(function(){
 
     $('.updateBtn').click(function(e){
 
-       
-       
         var taskid = $(this).data('tasks-id');
         var update = confirm("Are you sure you want to do this update?");
         var tittleName = $('.tittleName').val();
@@ -90,23 +85,23 @@ $(document).ready(function(){
     });
 
 
-    $('.editBtn').click(function(){
-        var box = $(this).closest('.taskInfo').find('.hideUpdate');
+    $('body').on('click', '.editBtn', function(e){
+        var box = $(e.currentTarget).closest('.taskInfo').find('.hideUpdate');
         box.slideToggle();
     });
 
-    // $('.container__sideBar a').click(function(){
-
-    //   $('.container__sideBar--list').slideToggle();
-       
-
-    // });   
-    // $('.container__sideBar a').mouseenter(function(){
-    //     $('.container__sideBar--list').css("display","block");
-    // });
-    // $('.container__sideBar a').mouseleave(function(){
-    //     $('.container__sideBar--list').css("display","none");
-    // });
+    $('#x').click(function(e){
+        e.preventDefault();
+        $('.images-upload').removeClass('showUpload');
+        $('.images-upload').addClass('hideUpload');
+    });
+    $('.figure-image').click(function(e){
+        e.preventDefault();
+        $('.images-upload').removeClass('hideUpload');
+        $('.images-upload').addClass('showUpload').show();
+    });
     
+   
+   
 
 });

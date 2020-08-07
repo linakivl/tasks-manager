@@ -24,6 +24,8 @@
             if($searchUser){
 
                 foreach($searchUser as $prop){
+
+                    
     
                     $session = new \Itrust\Session();
                     $_SESSION['fname'] = $prop['firstName'];

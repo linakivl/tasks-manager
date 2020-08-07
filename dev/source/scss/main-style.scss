@@ -58,7 +58,68 @@ li{
 
 .container{
     display:grid;
-    height: 100vh;    
+    height: 100vh; 
+    position: relative;
+
+    .images-upload{
+        display: flex;
+        top: 0;
+        right: 0px;
+        background-color: #fff;
+        position: absolute;
+        border: solid 1px black;    
+        z-index: 10;
+        border: dotted 1px black;
+        padding: 0 1rem;
+        width: 400px;
+        display:none;
+        #x{
+           font-size: 1.2rem;
+           cursor: pointer;
+            align-self: flex-end;   
+        } 
+        form{
+            display: flex;
+            flex-direction: column;
+            align-self: center;
+            input{
+                margin-bottom: .5rem;
+                
+            }
+            button{
+                background-color: $color-primary;
+                color:white;
+                outline: none;
+                border-radius: .2em;
+                margin-bottom: .5rem;
+                border: none;
+                border-bottom: 3px solid #030324;
+                padding: .5em 0;
+               
+                &:hover{
+                    background-color: burlywood;
+                    border-bottom: 3px solid rgb(204, 169, 124);
+                    cursor: pointer;
+                }
+            }
+        }
+    }
+    .showUpload{
+        animation: slide-in 0.5s forwards;
+        -webkit-animation: slide-in 0.5s forwards;
+    }
+    .hideUpload{
+        animation: slide-out 0.5s forwards;
+        -webkit-animation: slide-out 0.5s forwards;
+    }
+    @keyframes slide-in {
+        0% {transform: translateX(100%);}
+        100% {transform: translate(0%);}    
+    }
+    @keyframes slide-out {
+        0% {transform: translateX(0%);}
+        100% {transform: translateX(100%);}        
+    }
 
 
     &__sideBar{
@@ -168,17 +229,12 @@ li{
                 grid-column: 4 / 3;
                 display: flex;
                 justify-content: center;
-                align-items: center;
                 border: 1px solid #0e0e0ebb;
                 width: 70px;
                 height: 70px;
                 border-radius: 50%;
                 box-shadow: .1em .1em .1em #000000bb;
                
-                // .user-icon{
-                //     height: 1.1rem;
-                //     fill: $color-purple;
-                //  }
                 .figure-image{
                   
                     width: 100%;
@@ -186,13 +242,7 @@ li{
                 }
                 
             }
-            .images-upload{
-                top:0;
-                left:30rem;
-                background-color: #fff;
-                position: absolute;
-                border: solid 1px black;    
-            }
+            
             .exit-icon{
                 height: 1.4rem;
                 margin-left: .6rem;

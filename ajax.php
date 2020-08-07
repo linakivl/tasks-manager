@@ -8,8 +8,9 @@ $newReqTask = new Itrust\Task();
 switch ($_POST['action']) {
 
     case 'delete-task': {
-       
-        $newReqTask->deleteTask($_POST['deleteVal']); 
+        $deleteVal = filter_var($_POST['deleteVal'], FILTER_SANITIZE_NUMBER_INT);
+        if (!$deleteVal) return false;
+        $newReqTask->deleteTask($deleteVal); 
         break;
     } 
     case 'update-task': {
@@ -25,15 +26,16 @@ switch ($_POST['action']) {
         if($searchTask){
             foreach($searchTask as $task){
 
+
             $output = "<div class='tableBox__paragraphs_row'>
-            <div class='taskInfo'>
+            <div class='taskInfo' data-tasks-id='{$task['taskId']}'>
             <div class='taskInfo_details'>
             <p>{$task['tittle']}</p>
             <p>{$task['description']}</p>
             <p>{$task['createdAt']}</p>
             <p>{$task['updatedAt']}</p>
             <p>
-                <svg version='1.1' class='action-col__icons' id='Capa_1' xmlns='http://www.w3.org/2000/svg' xmlns:xlink='http://www.w3.org/1999/xlink' x='0px' y='0px'
+                <svg version='1.1' class='editBtn action-col__icons' class='' id='Capa_1' xmlns='http://www.w3.org/2000/svg' xmlns:xlink='http://www.w3.org/1999/xlink' x='0px' y='0px'
                         viewBox='0 0 512.049 512.049' style='enable-background:new 0 0 512.049 512.049;' xml:space='preserve'>
                     <path id='pen-1'  d='M510.266,4.855c-2.053-3.202-5.675-5.045-9.472-4.821c-59.397,7.72-117.708,22.251-173.781,43.307
                         c-2.545,0.942-4.635,2.819-5.845,5.248l-14.699,29.419l-10.88-10.859c-3.299-3.291-8.352-4.06-12.48-1.899
@@ -48,7 +50,7 @@ switch ($_POST['action']) {
                     <g>
                     </g>
                     </svg>
-                        <svg  data-tasks-id='{$task['taskId']}' class='action-col__icons deleteButton' viewBox='-43 0 512 512' 
+                        <svg class='action-col__icons deleteButton' viewBox='-43 0 512 512' 
                         xmlns='http://www.w3.org/2000/svg'>
                         <path d='m269.644531 88.976562h-113.0625c-8.285156 0-15-6.714843-15-15v-45.933593c0-15.460938 
                         12.570313-28.042969 28.023438-28.042969h87.011719c15.453124 0 28.027343 12.582031 28.027343 28.042969v45.933593c0 8.285157-6.71875 

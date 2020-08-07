@@ -14,14 +14,13 @@ require_once 'vendor/autoload.php';
     $allTasks = $newPagination->get_task_data();
    
     $displayImage = new \Itrust\Images($_SESSION['id'], $_SESSION['fname']);
-    $checkImageExit = $displayImage->checkImageExist();
+    $checkImageExist = $displayImage->checkImageExist();
     
 
     if(isset($_POST['uploadBtn'])){
 
         $image =  new \Itrust\Images($_SESSION['id'], $_SESSION['fname']);
-        $newImage = $image->uploadImage();
-        // Messages::displayMessage();
+        $newImage = $image->updateImagesTable();
         
     }
 
@@ -39,6 +38,16 @@ require_once 'vendor/autoload.php';
 <body>
 <main>
      <div class="container">
+     <div class="images-upload">
+        
+        <form action="main.php" method="post" enctype="multipart/form-data">
+            <a href="#" id="x">x</a>    
+            <input type="file" name="file">
+            <button type="submit" name="uploadBtn">UPLOAD </button>
+            <span><?php echo Messages::displayMessage(); ?></span>
+        </form>
+        
+        </div>
         <div class="container__sideBar">
             <div class="sideBar__heading">
                 <svg id="heading-bars"  viewBox="0 -53 384 384"  xmlns="http://www.w3.org/2000/svg">
@@ -147,25 +156,19 @@ require_once 'vendor/autoload.php';
               
                 </svg>
                 <figure class="profile-icon">
-                    <?php  if(!$checkImageExit) : ?>
+                    <?php  if(!$checkImageExist) : ?>
                          <a href="#">
                              <img class="figure-image" src="images/default-image.jpg" alt="guest image">
                          </a>
-                <?php  else :  foreach($checkImageExit as $image)?>
-
+                <?php  else :  foreach($checkImageExist as $image)?>
+                
                         <a href="#">
                              <img class="figure-image" src="images/usersimg/<?php echo $image['imageName']?>" alt="guest image">
                          </a>
                 <?php endif ?>
                 </figure>
                 
-                <div class="images-upload">
-                    <form action="main.php" method="post" enctype="multipart/form-data">
-                        <input type="file" name="file" >
-                        <button type="submit" name="uploadBtn">UPLOAD </button>
-                    </form>
-                    <span><?php echo Messages::displayMessage(); ?></span>
-                </div>
+               
                 <a href="logout.php">
                     <svg class="exit-icon" version="1.1" id="Capa_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
                     viewBox="0 0 471.2 471.2" style="enable-background:new 0 0 471.2 471.2;" xml:space="preserve">
@@ -224,7 +227,7 @@ require_once 'vendor/autoload.php';
                 <?php foreach($allTasks as $details) : ?>
 
                     <div class="tableBox__paragraphs_row">
-                        <div class="taskInfo">
+                        <div class="taskInfo" data-tasks-id="<?php echo $details['taskId']; ?>">
                             <div class="taskInfo_details">
                                 <p><?php echo $details['tittle']?></p>
                                 <p><?php echo $details['description']?></p>

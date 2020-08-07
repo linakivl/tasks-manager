@@ -70,7 +70,6 @@
                     }
                 }
             }
-
         }
         public function showOneTask($taskId){
             $sql = "SELECT * FROM tasks WHERE taskId = '{$taskId}'";

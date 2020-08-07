@@ -14,6 +14,15 @@
               $this->userfNamePhoto = $userfName;  
         }
 
+        public function checkThefield(){
+
+            if(!is_uploaded_file($_FILES['file']['tmp_name'])){
+
+              return false;
+            }
+            return true;
+        }
+
         public function checkImageExist(){
 
             $sql = "SELECT `imageName` FROM images WHERE userId = '{$this->userIdPhoto}'";
@@ -26,30 +35,37 @@
             return $result;
         }
         
-     
 
         public function updateImagesTable(){ 
            
+
             //if not.. update
-            if($this->checkImageExist()){
+            if(!$this->checkThefield()){
+                Messages::setMessage("You have to make an upload", 'error');
+                return false;
+            }
+            if(!$this->checkImageExist()){
 
-                foreach($this->checkImageExist() as $value){
+                $this->uploadImage();
+                $sql = "INSERT INTO images(`userId`, `imageName`) VALUES ( '{$this->userIdPhoto}' , '{$this->newName}' )";
+                $result = Db::getInstance()->execute($sql); 
+            }else{
 
-                    $imageExistName = $value['imageName'];
-                    $path = "images/usersimg/$imageExistName";
-                    $link = unlink($path);
+                 foreach($this->checkImageExist() as $value){
 
-                    if($link){
-                        $sql = "UPDATE images SET imageName = '{$this->newName}'";
-                    }
+                    $imageExistName = $value['imageName'];  
                 }
 
-            }else{
-                 //check if the userid exist
-                $sql = "INSERT INTO images(`userId`, `imageName`) VALUES ( '{$this->userIdPhoto}' , '{$this->newName}' )";
-                
+                $status = $this->uploadImage();
+
+                if($status) {
+                    $path = "images/usersimg/$imageExistName";
+                    $link = unlink($path);
+                    $sql = "UPDATE images SET imageName = '{$this->newName}' WHERE userId = '{$this->userIdPhoto}'";
+                    $result = Db::getInstance()->execute($sql); 
+                }
             }
-            $result = Db::getInstance()->execute($sql); 
+            
             Redirect::to("main.php");
         }
 
@@ -62,19 +78,23 @@
             $fileError = $_FILES['file']['error'];
             $fileSize = $_FILES['file']['size'];
             
-    
+            
             $fileExtension = explode('.', $fileName);
             $fileActualExtension = strtolower(end($fileExtension));
             $allowed = ['jpg', 'jpeg', 'png'];
 
             if(!in_array($fileActualExtension , $allowed)){
-                Messages::setMessage("You can't upload this kind of type", 'error');    
+                Messages::setMessage("You can't upload this kind of type", 'error');   
+                return false;
+                die();
             }
             if(!$fileError === 0){
                 Messages::setMessage("There was an error uploading your file!", 'error');
+                return false;
             }
             if($fileSize > 10000000){
                 Messages::setMessage("Your file size is big!", 'error');
+                return false;
             }
            
             $fileNewName = $this->userIdPhoto . $this->userfNamePhoto . "." . $fileActualExtension;
@@ -83,9 +103,12 @@
             
             $move = move_uploaded_file($fileTmpName, $fileDestination);
          
-            if($fileDestination){
-               $this->updateImagesTable();
+            if($move){
+                \Itrust\Messages::setMessage("your upload is done!", 'success');
+               return true;
             }
+
+            return false;
         }
 
         
