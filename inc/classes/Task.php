@@ -48,7 +48,7 @@
             $tittle = htmlentities($tittle);
             $description = htmlentities($description);
             $sql = "UPDATE tasks SET tittle = '{$tittle}', description = '{$description}' WHERE taskId = '${taskId}' ";
-            //update task
+      
             
             $updateResult = Db::getInstance()->execute($sql);
            

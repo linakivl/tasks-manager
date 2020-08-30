@@ -21,6 +21,13 @@ require_once 'vendor/autoload.php';
 
         $image =  new \Itrust\Images($_SESSION['id'], $_SESSION['fname']);
         $newImage = $image->updateImagesTable();
+        if($newImage){
+          
+
+            \Itrust\Redirect::to("main.php");
+       
+        }
+        
         
     }
 
@@ -38,13 +45,15 @@ require_once 'vendor/autoload.php';
 <body>
 <main>
      <div class="container">
-     <div class="images-upload">
+     
+     <div class="images-upload displayInputUpload">
         
         <form action="main.php" method="post" enctype="multipart/form-data">
             <a href="#" id="x">x</a>    
             <input type="file" name="file">
             <button type="submit" name="uploadBtn">UPLOAD </button>
-            <span><?php echo Messages::displayMessage(); ?></span>
+            <span><?php echo Messages::displayMessage() ?></span>
+               
         </form>
         
         </div>

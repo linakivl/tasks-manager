@@ -72,7 +72,6 @@ li{
         border: dotted 1px black;
         padding: 0 1rem;
         width: 400px;
-        display:none;
         #x{
            font-size: 1.2rem;
            cursor: pointer;
@@ -104,22 +103,22 @@ li{
             }
         }
     }
-    .showUpload{
-        animation: slide-in 0.5s forwards;
-        -webkit-animation: slide-in 0.5s forwards;
-    }
-    .hideUpload{
-        animation: slide-out 0.5s forwards;
-        -webkit-animation: slide-out 0.5s forwards;
-    }
-    @keyframes slide-in {
-        0% {transform: translateX(100%);}
-        100% {transform: translate(0%);}    
-    }
-    @keyframes slide-out {
-        0% {transform: translateX(0%);}
-        100% {transform: translateX(100%);}        
-    }
+    // .showUpload{
+    //     animation: slide-in 0.5s forwards;
+    //     -webkit-animation: slide-in 0.5s forwards;
+    // }
+    // .hideUpload{
+    //     animation: slide-out 0.5s forwards;
+    //     -webkit-animation: slide-out 0.5s forwards;
+    // }
+    // @keyframes slide-in {
+    //     0% {transform: translateX(100%);}
+    //     100% {transform: translate(0%);}    
+    // }
+    // @keyframes slide-out {
+    //     0% {transform: translateX(0%);}
+    //     100% {transform: translateX(100%);}        
+    // }
 
 
     &__sideBar{

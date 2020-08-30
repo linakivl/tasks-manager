@@ -277,9 +277,7 @@ font-family: "Verdana", sans-serif;
   
   .form__styles input[type="submit"]:hover {
    
-    transform: translateY(0.2em);
-    -webkit-transition: linear .2s;
-    transition: linear .2s;
+    
     letter-spacing: .2rem;
     font-size: 1.7rem;
     width: 305px;

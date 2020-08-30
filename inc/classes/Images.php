@@ -43,6 +43,7 @@
             if(!$this->checkThefield()){
                 Messages::setMessage("You have to make an upload", 'error');
                 return false;
+            
             }
             if(!$this->checkImageExist()){
 
@@ -63,10 +64,13 @@
                     $link = unlink($path);
                     $sql = "UPDATE images SET imageName = '{$this->newName}' WHERE userId = '{$this->userIdPhoto}'";
                     $result = Db::getInstance()->execute($sql); 
+                    return $result;
+                    
                 }
+               
             }
             
-            Redirect::to("main.php");
+            
         }
 
         public  function uploadImage(){
@@ -104,7 +108,7 @@
             $move = move_uploaded_file($fileTmpName, $fileDestination);
          
             if($move){
-                \Itrust\Messages::setMessage("your upload is done!", 'success');
+               
                return true;
             }
 

@@ -16,9 +16,19 @@
 
             $searchUser = Db::getInstance()->getResults("SELECT * FROM users 
             WHERE email  = '{$email}'  AND password = '{$password}' ");
+            
+
+            $somethingIsIncorrect = Db::getInstance()->getResults("SELECT * FROM users 
+            WHERE email  = '{$email}'  OR password = '{$password}' ");
+             
 
             if ( ! $searchUser) {
+
                 Messages::setMessage('You are not a user', 'error');
+                
+            }
+            if($somethingIsIncorrect){
+                Messages::setMessage('Something is wrong', 'error');
             }
    
             if($searchUser){

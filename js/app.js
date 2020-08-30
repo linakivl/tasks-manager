@@ -10,7 +10,7 @@ $(document).ready(function(){
         
         $.ajax({
             
-            url: '/lina-first-project/ajax.php',
+            url: '/repos/lina-first-project/ajax.php',
             type: 'post',
             data: {
             'action': 'delete-task',
@@ -35,7 +35,7 @@ $(document).ready(function(){
         if(update == 1){
            
             $.ajax({
-                url: '/lina-first-project/ajax.php',
+                url: '/repos/lina-first-project/ajax.php',
                 type: 'post',
                 data: {
 
@@ -90,16 +90,10 @@ $(document).ready(function(){
         box.slideToggle();
     });
 
-    $('#x').click(function(e){
-        e.preventDefault();
-        $('.images-upload').removeClass('showUpload');
-        $('.images-upload').addClass('hideUpload');
+    $('.profile-icon').click(function(){
+        $('.images-upload').slideDown().show();
     });
-    $('.figure-image').click(function(e){
-        e.preventDefault();
-        $('.images-upload').removeClass('hideUpload');
-        $('.images-upload').addClass('showUpload').show();
-    });
+    
     
    
    
